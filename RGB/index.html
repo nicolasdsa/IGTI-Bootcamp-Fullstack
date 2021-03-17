@@ -1,31 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
-  </head>
-  <body>
-    <div>
-      <input type="range" min="0" max="255" value="0" id="Verm" />
-      <input type="text" id="VermText" value="0" class="Texto" disabled />
-    </div>
+</head>
+<body>
 
-    <div>
-      <input type="range" min="0" max="255" value="0" id="Verd" />
-      <input type="text" id="VerdText" value="0" class="Texto" disabled />
-    </div>
+    <div id="fundo"></div>
 
-    <div>
-      <input type="range" min="0" max="255" value="0" id="Azu" />
-      <input type="text" id="AzuText" value="0" class="Texto" disabled />
-    </div>
+    <input id="range" type="range" oninput="mudou()">
+    <input id="text" type="text" oninput="mudou()">
 
-    <div id="quadrado"></div>
-    <button id="random">Cor Aleatoria</button>
 
-    <script type="text/javascript" src="script.js"></script>
-  </body>
+    <script src="script.js"></script>
+</body>
 </html>
-
