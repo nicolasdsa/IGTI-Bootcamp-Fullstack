@@ -1,8 +1,10 @@
-#quadrado {
-  margin: 10px;
-  width: 15rem;
-  height: 15rem;
+#fundo {
+    height: 300px;
+    width: 300px;
+    background-color: red;
 }
-.Texto {
-  width: 2rem;
+
+#section {
+    margin: 0 auto;
 }
+

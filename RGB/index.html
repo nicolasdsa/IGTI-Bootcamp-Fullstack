@@ -8,13 +8,23 @@
     <title>Document</title>
 </head>
 <body>
-
-    <div id="fundo"></div>
-
-    <input id="range" type="range" oninput="mudou()">
-    <input id="text" type="text" oninput="mudou()">
-
-
+    <section id="section">
+        <div class="estrutura">
+        <div id="fundo"></div>
+        <div>
+            <input id="vermelho" type="range" min="0" max="255" value="32" oninput="mudou()">
+            <input id="vermelhot" type="text" value="32" oninput="mudou()">
+        </div>
+        <div>
+            <input id="verde" type="range" min="0" max="255" value="125" oninput="mudou()">
+            <input id="verdet" type="text" value="125" oninput="mudou()">
+        </div>
+        <div>
+            <input id="azul" type="range" min="0" max="255" value="84" oninput="mudou()">
+            <input id="azult" type="text" value="84" oninput="mudou()">
+        </div>
+    </div>
+    </section>
     <script src="script.js"></script>
 </body>
 </html>
