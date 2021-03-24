@@ -3,14 +3,16 @@ window.addEventListener("load",start);
 
 var globalNames = ["Um","Dois","Três","Quatro"];
 var inputName = null;
+var currentIndex = null;
+var isEditing = false;
 
 function start() {
-    var inputName = document.querySelector("#inputName");
+    inputName = document.querySelector("#inputName");
 
 
     preventFormSubmit();
     activateInput();
-    render();
+    render();        
 
 }
 
@@ -27,14 +29,34 @@ function preventFormSubmit(){
 function activateInput(){
     function insertName(newName){
         globalNames.push(newName)
-        console.log(globalNames)
     }
+
+function updateName(newName){
+    globalNames[currentIndex] = newName;
+}
 
 
     function handleTyping(event){
+
+        var hasText = !!event.target.value && event.target.value.trim() !== "";
+
+        if(!hasText){
+            clearInput();
+            return;
+        }
+
         if (event.key === "Enter"){
-            insertName(event.target.value)
-            console.log("teste")
+            if(isEditing){
+                updateName(event.target.value);
+            }
+            else {
+                insertName(event.target.value)
+            }
+
+            render();  
+            isEditing = false;
+            clearInput();
+
         }
     }
 
@@ -46,26 +68,60 @@ function activateInput(){
 }
 
 function render(){
+
+    function createDeleteButton(index){
+
+        function deleteName(){
+            globalNames.splice(index, 1);
+            render();
+        }
+
+        var button = document.createElement("button")
+        button.classList.add("deleteButton");
+        button.textContent = "x";
+
+        button.addEventListener("click",deleteName)
+        
+        return button
+    }
+
+    function createSpan(name, index) {
+        function editItem(){
+            inputName.value = name;
+            inputName.focus();
+            isEditing = true;
+            currentIndex = index;
+        }
+
+        var span = document.createElement("span");
+        span.classList.add("clickable")
+        span.textContent = name;
+        span.addEventListener("click",editItem);
+
+        return span
+
+    }
     var divNames = document.querySelector("#names");
+    divNames.innerHTML = "";
 
     var ul = document.createElement("ul");
-    var li1 = document.createElement("li");
-    var li2 = document.createElement("li");
-    li1.textContent = "Primeiro";
-    li2.textContent = "Segundo";
-    ul.appendChild(li1);
-    ul.appendChild(li2);
-
-    divNames.appendChild(ul);
-
-    /*for (var i = 0; i < globalNames.length; i++){
+    
+    for(var i = 0; i < globalNames.length; i++){
         var currentName = globalNames[i];
+        
         var li = document.createElement("li");
-        li.textContent = currentName;
+       
+        var button = createDeleteButton();
+
+        var span = createSpan(currentName, i);
+
+        ul.appendChild(button);
+        ul.appendChild(span);
         ul.appendChild(li);
     }
+
     divNames.appendChild(ul);
-    clearInput();*/
+    clearInput();
 
 }
 
